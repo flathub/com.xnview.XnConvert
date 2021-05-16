@@ -2,8 +2,8 @@ name: XnConvert
 buildsystem: simple
 sources:
   - type: archive
-    url: https://download.xnview.com/old_versions/XnConvert-180-linux-x64.tgz
-    sha256: 98163f4a30d40f09936c6a136b3d417f04d7e708b14171e2925a355fa17520df
+    url: https://download.xnview.com/old_versions/XnConvert-1900-linux-x64.tgz
+    sha256: afdcd75653ac3cce0c3ef8b13220e6fc0295cd839f6365d0364edf4e24ad553a
     strip-components: 0
   - type: patch
     path: xnconvert-1.79-wrapper.patch
