@@ -2,8 +2,8 @@ name: XnConvert
 buildsystem: simple
 sources:
   - type: archive
-    url: https://download.xnview.com/old_versions/XnConvert-1900-linux-x64.tgz
-    sha256: afdcd75653ac3cce0c3ef8b13220e6fc0295cd839f6365d0364edf4e24ad553a
+    url: https://download.xnview.com/old_versions/XnConvert-1950-linux-x64.tgz
+    sha256: 9b69f53bc325b725b53fb11c0f8c705a03e765b4ce44e104523fe85b642dc8f8
     strip-components: 0
   - type: patch
     path: xnconvert-1.79-wrapper.patch
@@ -42,7 +42,7 @@ build-commands:
       install -p -D -m 0644 "${icon_out}" -t "${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/";
     done;
     install -p -D -m 0644 "${icon_in}" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${icon_out}";
-  - > 
+  - >
     desktop-file-edit
     --set-key="TryExec" --set-value="xnconvert"
     --set-key="Exec" --set-value="xnconvert %F"
