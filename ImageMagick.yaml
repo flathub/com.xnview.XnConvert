@@ -8,6 +8,6 @@ config-opts:
   - --with-png
 sources:
   - type: archive
-    url: https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.0.11-6.tar.gz
-    sha256: 8adc1605784653b078572b825e8cd1d3d54f8a1b4ba86b32ca253c038f7e4c37
+    url: https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.0-37.tar.gz
+    sha256: a54888a1a46dbb808705a3e6c6b5ecb93ee30189a8ae6ea0f02300a0ab0d0996
 cleanup: ['*']
