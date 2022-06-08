@@ -16,8 +16,8 @@ build-options:
       cppflags: -DPNG_ARM_NEON_OPT=0
 sources:
   - type: archive
-    url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9540/ghostscript-9.54.0.tar.xz
-    sha256: c2b7b43cde600f4e70efb2cd95865f6d884a67315c3de235914697d8ccde6e3b
+    url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9561/ghostscript-9.56.1.tar.xz
+    sha256: d43406805650009b42c3d5f6dc535233454533c1e27c13a77dd1d462a056b8e4
   - type: shell
     commands:
      - "rm -rf lcms2mt jpeg libpng openjpeg zlib"
