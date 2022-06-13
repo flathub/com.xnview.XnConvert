@@ -7,31 +7,77 @@ finish-args:
   # X11 + XShm access
   - --share=ipc
   - --socket=x11
-  # Wayland access
-  - --socket=wayland
   # Filesystem access
   - --filesystem=home
   # Network access
-  # for update checker
   - --share=network
-  # Dconf access
-  - --filesystem=xdg-run/dconf
-  - --filesystem=~/.config/dconf:ro
-  - --talk-name=ca.desrt.dconf
-  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
   # OpenGL access
   - --device=dri
 tags:
   - proprietary
 modules:
-  - shared-modules/gtk2/gtk2.json
-  # to resize icon
-  - ImageMagick.yaml
-  # to load PostScript-based file formats (PS + EPS + AI) as well as PDF
-  # for display, printing, and conversion
-  - ghostscript.yaml
-  - krb5.yaml
-  - XnConvert.yaml
+  - name: ImageMagick
+    config-opts:
+      - --enable-shared
+      - --disable-static
+      - --disable-docs
+      - --with-modules
+      - --with-threads
+      - --with-png
+    sources:
+      - type: archive
+        url: https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.0-37.tar.gz
+        sha256: a54888a1a46dbb808705a3e6c6b5ecb93ee30189a8ae6ea0f02300a0ab0d0996
+    cleanup: ['*']
+  - name: ghostscript
+    config-opts:
+      - --enable-dynamic
+      - --disable-cups
+      - --disable-dbus
+      - --disable-gtk
+      - --with-system-libtiff
+      - --with-drivers=FILES
+    build-options:
+      arch:
+        aarch64:
+          cppflags: -DPNG_ARM_NEON_OPT=0
+    sources:
+      - type: archive
+        url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9561/ghostscript-9.56.1.tar.xz
+        sha256: d43406805650009b42c3d5f6dc535233454533c1e27c13a77dd1d462a056b8e4
+      - type: shell
+        commands:
+         - "rm -rf lcms2mt jpeg libpng openjpeg zlib"
+    cleanup:
+      - /share/doc
+  - name: krb5
+    subdir: "src"
+    config-opts:
+      - --disable-static
+      - --disable-rpath
+    sources:
+      - type: archive
+        url: https://kerberos.org/dist/krb5/1.20/krb5-1.20.tar.gz
+        sha256: 7e022bdd3c851830173f9faaa006a230a0e0fdad4c953e85bff4bf0da036e12f
+  - name: XnConvert
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://download.xnview.com/XnConvert-linux-x64.tgz
+        sha256: 9b69f53bc325b725b53fb11c0f8c705a03e765b4ce44e104523fe85b642dc8f8
+        strip-components: 0
+      - type: file
+        path: com.xnview.XnConvert.desktop
+      - type: file
+        path: xnconvert.svg
+      - type: file
+        path: com.xnview.XnConvert.appdata.xml
+    build-commands:
+      - cp -a "XnConvert" "${FLATPAK_DEST}/"
+      - ln -s "${FLATPAK_DEST}/XnConvert/xnconvert.sh" "${FLATPAK_DEST}/bin/xnconvert"
+    post-install:
+      - install -Dm0644 "com.xnview.XnConvert.desktop" -t "${FLATPAK_DEST}/share/applications/"
+      - install -Dm0644 "com.xnview.XnConvert.appdata.xml" -t "${FLATPAK_DEST}/share/appdata/"
+      - install -Dm0644 "xnconvert.svg" "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
 cleanup:
   - /share/man
-  - /XnConvert/XnConvert.desktop*
