@@ -37,10 +37,6 @@ modules:
       - --disable-gtk
       - --with-system-libtiff
       - --with-drivers=FILES
-    build-options:
-      arch:
-        aarch64:
-          cppflags: -DPNG_ARM_NEON_OPT=0
     sources:
       - type: archive
         url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9561/ghostscript-9.56.1.tar.xz
