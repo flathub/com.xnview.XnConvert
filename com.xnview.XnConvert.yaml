@@ -1,6 +1,6 @@
 app-id: com.xnview.XnConvert
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: xnconvert
 finish-args:
@@ -25,9 +25,10 @@ modules:
       - --with-threads
       - --with-png
     sources:
-      - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.0-37.tar.gz
-        sha256: a54888a1a46dbb808705a3e6c6b5ecb93ee30189a8ae6ea0f02300a0ab0d0996
+      - type: git
+        url: https://github.com/ImageMagick/ImageMagick.git
+        tag: 7.1.0-48
+        commit: c243c92818c376315650f6d8340e7e62e9a14a9e
     cleanup: ['*']
   - name: ghostscript
     config-opts:
@@ -39,11 +40,11 @@ modules:
       - --with-drivers=FILES
     sources:
       - type: archive
-        url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9561/ghostscript-9.56.1.tar.xz
-        sha256: d43406805650009b42c3d5f6dc535233454533c1e27c13a77dd1d462a056b8e4
+        url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs1000/ghostscript-10.0.0.tar.xz
+        sha256: f1fa585f7c7d32adfa81ab389388100ac9df83444eb64db1fb92737141ef9f61
       - type: shell
         commands:
-         - "rm -rf lcms2mt jpeg libpng openjpeg zlib"
+         - "rm -rf tesseract leptonica gpdl cups/libs jpeg libpng openjpeg tiff zlib"
     cleanup:
       - /share/doc
   - name: krb5
