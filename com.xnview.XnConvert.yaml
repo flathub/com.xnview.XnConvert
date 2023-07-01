@@ -27,12 +27,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/ImageMagick/ImageMagick.git
-        tag: 7.1.0-48
-        commit: c243c92818c376315650f6d8340e7e62e9a14a9e
+        tag: 7.1.1-12
+        commit: a09d8dd5e3a92362cf70c184670b23163587e6f8
     cleanup: ['*']
   - name: ghostscript
     config-opts:
-      - --enable-dynamic
       - --disable-cups
       - --disable-dbus
       - --disable-gtk
@@ -40,8 +39,8 @@ modules:
       - --with-drivers=FILES
     sources:
       - type: archive
-        url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs1000/ghostscript-10.0.0.tar.xz
-        sha256: f1fa585f7c7d32adfa81ab389388100ac9df83444eb64db1fb92737141ef9f61
+        url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10012/ghostscript-10.01.2.tar.xz
+        sha256: 48d079242a2ca02a2e47a76a52cdfa818b2ad769c2bab00ad0497dd13560e7e7
       - type: shell
         commands:
          - "rm -rf tesseract leptonica gpdl cups/libs jpeg libpng openjpeg tiff zlib"
@@ -54,14 +53,14 @@ modules:
       - --disable-rpath
     sources:
       - type: archive
-        url: https://kerberos.org/dist/krb5/1.20/krb5-1.20.tar.gz
-        sha256: 7e022bdd3c851830173f9faaa006a230a0e0fdad4c953e85bff4bf0da036e12f
+        url: https://kerberos.org/dist/krb5/1.21/krb5-1.21.tar.gz
+        sha256: 69f8aaff85484832df67a4bbacd99b9259bd95aab8c651fbbe65cdc9620ea93b
   - name: XnConvert
     buildsystem: simple
     sources:
       - type: archive
         url: https://download.xnview.com/XnConvert-linux-x64.tgz
-        sha256: 9b69f53bc325b725b53fb11c0f8c705a03e765b4ce44e104523fe85b642dc8f8
+        sha256: 00497eedcd71d590af6c5126581e5f6e3134769fd4799f7a1da452294aa3bacc
         strip-components: 0
       - type: file
         path: com.xnview.XnConvert.desktop
