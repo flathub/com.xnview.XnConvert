@@ -9,8 +9,6 @@ finish-args:
   - --socket=x11
   # Filesystem access
   - --filesystem=home
-  # Network access
-  - --share=network
   # OpenGL access
   - --device=dri
 tags:
