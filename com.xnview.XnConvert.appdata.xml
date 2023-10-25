@@ -46,10 +46,11 @@
     <id>XnConvert.desktop</id>
   </provides>
   <launchable type="desktop-id">com.xnview.XnConvert.desktop</launchable>
-  <content_rating type="oars-1.0">
+  <content_rating type="oars-1.1">
     <content_attribute id="social-info">mild</content_attribute>
   </content_rating>
   <releases>
+    <release version="1.99" date="2023-10-25" />
     <release version="1.98" date="2023-03-27" />
     <release version="1.95" date="2021-12-10" />
     <release version="1.90" date="2020-12-13" />
