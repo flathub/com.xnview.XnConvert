@@ -77,7 +77,7 @@ modules:
     sources:
       - type: archive
         url: https://download.xnview.com/XnConvert-linux-x64.tgz
-        sha256: d98494c5b72ab82c1c7c3242e218f1f8cb013a66a15f722d240de0b4154c5ef0
+        sha256: 75acf7adb6037faa849de4ce27067f307671df8aeedf622ed6771291893d8ef2
         strip-components: 0
         x-checker-data:
           type: rotating-url
