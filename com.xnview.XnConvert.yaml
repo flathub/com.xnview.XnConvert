@@ -96,4 +96,8 @@ modules:
       - install -Dm0644 "com.xnview.XnConvert.appdata.xml" -t "${FLATPAK_DEST}/share/appdata/"
       - install -Dm0644 "xnconvert.svg" "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
 cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/et
+  - /share/examples
   - /share/man
