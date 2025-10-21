@@ -9,6 +9,7 @@ finish-args:
   - --socket=x11
   # Filesystem access
   - --filesystem=xdg-pictures
+  - --persist=.config/xnconvert
   # OpenGL access
   - --device=dri
 tags:
