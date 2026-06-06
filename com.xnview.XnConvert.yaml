@@ -1,6 +1,6 @@
 app-id: com.xnview.XnConvert
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: xnconvert
 finish-args:
@@ -51,15 +51,12 @@ modules:
       - type: shell
         commands:
           - rm -rf tesseract leptonica gpdl cups/libs jpeg libpng openjpeg tiff zlib
-    cleanup:
-      - /share/doc
 
   - name: krb5
     subdir: src
     config-opts:
       - --localstatedir=/var/lib
       - --sbindir=${FLATPAK_DEST}/bin
-      - --disable-static
       - --disable-rpath
     sources:
       - type: archive
@@ -97,7 +94,6 @@ modules:
       - install -Dm0644 "com.xnview.XnConvert.appdata.xml" -t "${FLATPAK_DEST}/share/appdata/"
       - install -Dm0644 "xnconvert.svg" "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
 cleanup:
-  - /include
   - /lib/pkgconfig
   - /share/et
   - /share/examples
