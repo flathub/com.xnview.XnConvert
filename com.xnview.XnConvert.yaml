@@ -3,6 +3,8 @@ runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: xnconvert
+tags:
+  - proprietary
 finish-args:
   # X11 + XShm access
   - --share=ipc
@@ -12,8 +14,13 @@ finish-args:
   - --persist=.config/xnconvert
   # OpenGL access
   - --device=dri
-tags:
-  - proprietary
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/et
+  - /share/examples
+  - /share/doc
+  - /share/man
 modules:
   - name: ImageMagick
     config-opts:
@@ -23,6 +30,8 @@ modules:
       - --with-modules
       - --with-threads
       - --with-png
+    cleanup:
+      - '*'
     sources:
       - type: archive
         url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-25.tar.gz
@@ -31,7 +40,6 @@ modules:
           type: anitya
           project-id: 1372
           url-template: https://github.com/ImageMagick/ImageMagick/archive/$version.tar.gz
-    cleanup: ['*']
 
   - name: ghostscript
     config-opts:
@@ -51,8 +59,6 @@ modules:
       - type: shell
         commands:
           - rm -rf tesseract leptonica gpdl cups/libs jpeg libpng openjpeg tiff zlib
-    cleanup:
-      - /share/doc
 
   - name: krb5
     subdir: src
@@ -61,6 +67,8 @@ modules:
       - --sbindir=${FLATPAK_DEST}/bin
       - --disable-static
       - --disable-rpath
+    cleanup:
+      - /bin
     sources:
       - type: archive
         url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
@@ -70,11 +78,16 @@ modules:
           url: https://kerberos.org/dist/
           version-pattern: Kerberos V5 Release ([\d\.-]*) - current release
           url-template: https://kerberos.org/dist/krb5/$version0.$version1/krb5-$version.tar.gz
-    cleanup:
-      - /bin
 
   - name: XnConvert
     buildsystem: simple
+    build-commands:
+      - cp -a XnConvert ${FLATPAK_DEST}/
+      - ln -s ${FLATPAK_DEST}/XnConvert/xnconvert.sh ${FLATPAK_DEST}/bin/xnconvert
+    post-install:
+      - install -Dm0644 ${FLATPAK_ID}.desktop -t ${FLATPAK_DEST}/share/applications/
+      - install -Dm0644 ${FLATPAK_ID}.appdata.xml -t ${FLATPAK_DEST}/share/metainfo/
+      - install -Dm0644 ${FLATPAK_ID}.svg -t ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/
     sources:
       - type: archive
         url: https://download.xnview.com/XnConvert-linux-x64.tgz
@@ -86,19 +99,6 @@ modules:
       - type: file
         path: com.xnview.XnConvert.desktop
       - type: file
-        path: xnconvert.svg
+        path: com.xnview.XnConvert.svg
       - type: file
         path: com.xnview.XnConvert.appdata.xml
-    build-commands:
-      - cp -a "XnConvert" "${FLATPAK_DEST}/"
-      - ln -s "${FLATPAK_DEST}/XnConvert/xnconvert.sh" "${FLATPAK_DEST}/bin/xnconvert"
-    post-install:
-      - install -Dm0644 "com.xnview.XnConvert.desktop" -t "${FLATPAK_DEST}/share/applications/"
-      - install -Dm0644 "com.xnview.XnConvert.appdata.xml" -t "${FLATPAK_DEST}/share/appdata/"
-      - install -Dm0644 "xnconvert.svg" "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
-cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /share/et
-  - /share/examples
-  - /share/man
