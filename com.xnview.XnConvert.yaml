@@ -71,13 +71,15 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
-        sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
+        url: https://download.xnview.com/versions/XnConvert/XnConvert-1.116.0-linux-x64.tgz
+        sha256: 86c945be06c9f6830d3d011684acce6db49e4f9ff3aa7dfde1ed5646647200b6
+        strip-components: 0
         x-checker-data:
           type: html
-          url: https://kerberos.org/dist/
-          version-pattern: Kerberos V5 Release ([\d\.-]*) - current release
-          url-template: https://kerberos.org/dist/krb5/$version0.$version1/krb5-$version.tar.gz
+          is-main-source: true
+          url: https://www.xnview.com/update.txt
+          version-pattern: \[XnConvert\]\s*version=([\d.]+)
+          url-template: https://download.xnview.com/versions/XnConvert/XnConvert-$version.0-linux-x64.tgz
 
   - name: XnConvert
     buildsystem: simple
