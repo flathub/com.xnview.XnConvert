@@ -10,7 +10,9 @@ finish-args:
   - --share=ipc
   - --socket=x11
   # Filesystem access
-  - --filesystem=xdg-pictures
+  - --filesystem=home
+  - --filesystem=/media
+  - --filesystem=/run/media
   - --persist=.config/xnconvert
   # OpenGL access
   - --device=dri
