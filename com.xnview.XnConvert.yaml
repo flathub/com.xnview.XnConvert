@@ -10,7 +10,9 @@ finish-args:
   - --share=ipc
   - --socket=x11
   # Filesystem access
-  - --filesystem=xdg-pictures
+  - --filesystem=home
+  - --filesystem=/media
+  - --filesystem=/run/media
   - --persist=.config/xnconvert
   # OpenGL access
   - --device=dri
@@ -90,12 +92,15 @@ modules:
       - install -Dm0644 ${FLATPAK_ID}.svg -t ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/
     sources:
       - type: archive
-        url: https://download.xnview.com/XnConvert-linux-x64.tgz
+        url: https://download.xnview.com/versions/XnConvert/XnConvert-1.116.0-linux-x64.tgz
         sha256: 86c945be06c9f6830d3d011684acce6db49e4f9ff3aa7dfde1ed5646647200b6
         strip-components: 0
         x-checker-data:
-          type: rotating-url
-          url: https://download.xnview.com/XnConvert-linux-x64.tgz
+          type: html
+          is-main-source: true
+          url: https://www.xnview.com/update.txt
+          version-pattern: \[XnConvert\]\s*version=([\d.]+)
+          url-template: https://download.xnview.com/versions/XnConvert/XnConvert-$version.0-linux-x64.tgz
       - type: file
         path: com.xnview.XnConvert.desktop
       - type: file
