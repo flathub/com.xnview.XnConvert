@@ -34,8 +34,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-31.tar.gz
-        sha256: 34d9cc3acddc3e3c429d23af60eda5ceaac477a8b296ddb9469f773f44a80a5f
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-33.tar.gz
+        sha256: c768ff077cccff1b682aa56653b54247b268752427ca998992b24cc7c597d9e7
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -91,7 +91,7 @@ modules:
     sources:
       - type: archive
         url: https://download.xnview.com/XnConvert-linux-x64.tgz
-        sha256: 86c945be06c9f6830d3d011684acce6db49e4f9ff3aa7dfde1ed5646647200b6
+        sha256: b1678a13bb1dc232be5b118b79fe11dda887e0431294269e3a0fde2ed3ea377f
         strip-components: 0
         x-checker-data:
           type: rotating-url
